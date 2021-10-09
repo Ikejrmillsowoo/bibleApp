@@ -1,75 +1,37 @@
 import React, { useState } from "react";
 import {
-  Button,
   Text,
   TextInput,
   View,
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import {
-  newSearchBook,
-  // newSearchChapter,
-  // newSearchVerse,
-} from "../store/action";
-// import { bindActionCreators } from "redux";
-// import { newSearch } from "../store/action";
-
-// const searchItem = {
-//   book: book,
-//   chapter: chapter,
-//   verse: verse,
-// };
+import { useSelector, useDispatch } from "react-redux";
+import { newSearchBook } from "../store/action";
 
 function Home({ navigation }) {
-  // console.log(props.searchItem);
-  // const book = useSelector((state) => state.book);
-  // const chapter = useSelector((state) => state.chapter);
-  // const verse = useSelector((state) => state.book);
+  const book = useSelector((state) => state.book);
+  const chapter = useSelector((state) => state.chapter);
+  const verse = useSelector((state) => state.book);
 
   const dispatch = useDispatch();
 
-  // function changeBook() {
-  //   dispatch({
-  //     type: SEARCH_BOOKS,
-  //   });
-  // }
+  const [newBook, setBook] = useState(book);
+  const [newChapter, setChapter] = useState(chapter);
+  const [newVerse, setVerse] = useState(verse);
 
-  // function changeChapter() {
-  //   dispatch({
-  //     type: SEARCH_CHAPTER,
-  //   });
-  // }
-  // function changeVerse() {
-  //   dispatch({
-  //     type: SEARCH_VERSE,
-  //   });
-  // }
-
-  const [newBook, setBook] = useState("");
-  const [newChapter, setChapter] = useState("");
-  const [newVerse, setVerse] = useState("");
-
-  //console.log(`${newBook}, ${newChapter}, ${newVerse}`);
   const newSearchItems = {
     book: newBook,
     chapter: newChapter,
     verse: newVerse,
   };
-  //console.log(`here i print: ${newSearchItems}`);
 
   function onChange() {
     dispatch(newSearchBook(newSearchItems));
-    // dispatch(newSearchChapter(newChapter));
-    // dispatch(newSearchVerse(newVerse));
-    console.log("dispatched");
   }
 
   return (
     <View style={styles.mainHome}>
-      {/* <Text style={styles.homeTitle}>Daily Quote</Text> */}
-
       <TextInput
         style={styles.textInputs}
         placeholder="book"
@@ -89,32 +51,20 @@ function Home({ navigation }) {
         keyboardType="numeric"
         onChangeText={(text) => setVerse(text)}
       ></TextInput>
-      {/* <Button
-        style={styles.button}
-        onPressIn={onChange}
-        //onPress={() => navigation.navigate("Fetch", { name: "fetch" })}
-        //onPress={() => props.newSearch}
-        // onPress={() => {
-        //   onChange();
-        //   //console.log("pressed to submit");
-        //   //dispatch(newSearchBook, newSearchChapter, newSearchVerse);
-        // }}
-        // onPress={onChange}
 
-        title="get verse"
-      /> */}
       <TouchableWithoutFeedback
         onPressIn={onChange}
         onPress={() => navigation.navigate("Fetch", { name: "fetch" })}
       >
-        <Text style={styles.button}>get Verse</Text>
+        <Text style={styles.button}>Get Verse</Text>
       </TouchableWithoutFeedback>
 
-      <Button
-        style={styles.button}
+      <TouchableWithoutFeedback
         onPress={() => navigation.navigate("Login", { name: "login" })}
         title="Log In"
-      />
+      >
+        <Text style={styles.button}>Log In</Text>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
@@ -137,21 +87,13 @@ const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
     marginTop: 10,
-    width: "30",
+    width: 100,
+    textAlign: "center",
+    paddingTop: 10,
+    paddingBottom: 10,
+    color: "white",
+    backgroundColor: "blue",
   },
 });
 
-// const mapStateToProps = (state) => {
-//   const { searchItem } = state;
-//   return { searchItem };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   bindActionCreators(
-//     {
-//       newSearch,
-//     },
-//     dispatch
-//   );
-// };
 export default Home;

@@ -3,13 +3,6 @@ import { Text, View, Button, StyleSheet, ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 
 const url = "https://bible-api.com/";
-//https://bible-api.com/BOOK+CHAPTER:VERSE
-
-// const terms = {
-//   book: "exodus",
-//   chapter: 1,
-//   verse: "3",
-// };
 
 function Fetch({ navigation }) {
   const book = useSelector((state) => state.book);
@@ -26,22 +19,28 @@ function Fetch({ navigation }) {
           : `${url}${book}+${chapter}`
       );
       const itemJSON = await item.json();
-      console.log(itemJSON);
+
       setData(itemJSON);
     }
+
     fetchData();
   }, [book, chapter, verse]);
 
   return (
-    <ScrollView style={styles.main}>
+    <View style={styles.main}>
       <Text style={styles.heading}>{data.reference}</Text>
-      <Text style={styles.textItem}>{data.text}</Text>
+      <ScrollView>
+        <View>
+          <Text style={styles.textItem}>{data.text}</Text>
+        </View>
+      </ScrollView>
+
       <Button
         style={styles.button}
         onPress={() => navigation.navigate("Home", { name: "home" })}
         title="New Search"
       />
-    </ScrollView>
+    </View>
   );
 }
 
