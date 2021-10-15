@@ -4,14 +4,17 @@ export const booksReducer = (
 ) => {
   switch (action.type) {
     case "SEARCH_BOOKS":
-      console.log(
-        `book: ${action.payload.book} ${action.payload.chapter} ${action.payload.verse}`
-      );
       return {
         ...state,
         book: action.payload.book,
         chapter: action.payload.chapter,
         verse: action.payload.verse,
+      };
+    case "NEW_USER":
+      return {
+        ...state,
+        email: action.payload,
+        fullname: action.payload,
       };
     default:
       return state;

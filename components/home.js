@@ -32,39 +32,42 @@ function Home({ navigation }) {
 
   return (
     <View style={styles.mainHome}>
-      <TextInput
-        style={styles.textInputs}
-        placeholder="book"
-        onChangeText={(text) => setBook(text)}
-      ></TextInput>
+      <View style={styles.mainHome}>
+        <TextInput
+          style={styles.textInputs}
+          placeholder="book"
+          onChangeText={(text) => setBook(text)}
+        ></TextInput>
 
-      <TextInput
-        style={styles.textInputs}
-        placeholder="chapter"
-        keyboardType="numeric"
-        onChangeText={(text) => setChapter(text)}
-      ></TextInput>
+        <TextInput
+          style={styles.textInputs}
+          placeholder="chapter"
+          keyboardType="numeric"
+          onChangeText={(text) => setChapter(text)}
+        ></TextInput>
 
-      <TextInput
-        style={styles.textInputs}
-        placeholder="verse"
-        keyboardType="numeric"
-        onChangeText={(text) => setVerse(text)}
-      ></TextInput>
+        <TextInput
+          style={styles.textInputs}
+          placeholder="verse"
+          keyboardType="numeric"
+          onChangeText={(text) => setVerse(text)}
+        ></TextInput>
+        <View style={styles.touchFlex}>
+          <TouchableWithoutFeedback
+            onPressIn={onChange}
+            onPress={() => navigation.navigate("Fetch", { name: "fetch" })}
+          >
+            <Text style={styles.button}>Get Verse</Text>
+          </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback
-        onPressIn={onChange}
-        onPress={() => navigation.navigate("Fetch", { name: "fetch" })}
-      >
-        <Text style={styles.button}>Get Verse</Text>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback
-        onPress={() => navigation.navigate("Login", { name: "login" })}
-        title="Log In"
-      >
-        <Text style={styles.button}>Log In</Text>
-      </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate("Login", { name: "login" })}
+            title="Log In"
+          >
+            <Text style={styles.button}>Log In</Text>
+          </TouchableWithoutFeedback>
+        </View>
+      </View>
     </View>
   );
 }
@@ -75,6 +78,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     flex: 1,
     alignItems: "center",
+    backgroundColor: "#000000",
   },
   textInputs: {
     width: "80%",
@@ -83,16 +87,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#eaeaea",
     borderWidth: 1,
     borderRadius: 8,
+    fontSize: 15,
+  },
+  touchFlex: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
   button: {
     borderWidth: 1,
-    marginTop: 10,
+    margin: 10,
     width: 100,
     textAlign: "center",
     paddingTop: 10,
     paddingBottom: 10,
     color: "white",
-    backgroundColor: "blue",
+    backgroundColor: "#D3D3D3",
+    fontSize: 15,
+    fontWeight: "bold",
   },
 });
 

@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Fetch from "./components/fetch";
 import Home from "./components/home";
 import Login from "./components/login";
+import Signup from "./components/signup";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -50,7 +51,11 @@ export default function App() {
             name="Login"
             component={Login}
             options={{ title: "Login" }}
-            style={styles.title}
+          />
+          <Tab.Screen
+            name="Signup"
+            component={Signup}
+            options={{ title: "Signup" }}
           />
         </Tab.Navigator>
         <StatusBar style="auto" />
@@ -61,13 +66,14 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    //alignItems: "center",
+    //justifyContent: "center",
   },
   title: {
-    justifyContent: "center",
-    backgroundColor: "red",
+    // justifyContent: "center",
+    // backgroundColor: "red",
+    textAlign: "center",
   },
 });

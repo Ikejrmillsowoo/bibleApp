@@ -39,6 +39,7 @@ function Fetch({ navigation }) {
         style={styles.button}
         onPress={() => navigation.navigate("Home", { name: "home" })}
         title="New Search"
+        color="grey"
       />
     </View>
   );
@@ -47,20 +48,24 @@ function Fetch({ navigation }) {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    backgroundColor: "#000000",
   },
   button: {
-    flex: 1,
+    //flex: 1,
   },
   heading: {
-    fontSize: 20,
+    fontSize: 28,
+    fontWeight: "bold",
     textAlign: "center",
-    margin: 10,
+    margin: 12,
+    color: "white",
   },
   textItem: {
-    fontSize: 15,
+    fontSize: 17,
     textAlign: "center",
     fontStyle: "italic",
     margin: 10,
+    color: "#ffffff",
   },
 });
 

@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 const loginValidationSchema = yup.object().shape({
+  username: yup.string().required("Username is required"),
   email: yup
     .string()
     .email("Please enter valid email")
@@ -21,10 +22,10 @@ const loginValidationSchema = yup.object().shape({
     .required("Password is required"),
 });
 
-export const Login = ({ navigation }, props) => (
+export const Signup = (props) => (
   <Formik
     validationSchema={loginValidationSchema}
-    initialValues={{ email: "", password: "" }}
+    initialValues={{ username: "", email: "", password: "" }}
     onSubmit={(values, { resetForm }) => {
       console.log(values);
       resetForm({ values: "" });
@@ -40,6 +41,17 @@ export const Login = ({ navigation }, props) => (
       isValid,
     }) => (
       <View style={styles.title}>
+        <TextInput
+          name="username"
+          style={styles.textInputs}
+          onChangeText={handleChange("username")}
+          onBlur={handleBlur("username")}
+          value={values.username}
+          placeholder="username"
+        />
+        {errors.username && touched.username && (
+          <Text style={{ fontSize: 15, color: "red" }}>{errors.username}</Text>
+        )}
         <TextInput
           name="email"
           style={styles.textInputs}
@@ -62,11 +74,7 @@ export const Login = ({ navigation }, props) => (
         {errors.password && touched.password && (
           <Text style={{ fontSize: 15, color: "red" }}>{errors.password}</Text>
         )}
-        <Button onPress={handleSubmit} title="Log In" disabled={!isValid} />
-        <Button
-          onPress={() => navigation.navigate("Signup", { name: "Sign Up" })}
-          title="Sign Up"
-        />
+        <Button onPress={handleSubmit} title="Sign Up" disabled={!isValid} />
       </View>
     )}
   </Formik>
@@ -124,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Signup;
