@@ -27,6 +27,7 @@ function Home({ navigation }) {
   };
 
   function onChange() {
+    console.log(newSearchItems);
     dispatch(newSearchBook(newSearchItems));
   }
 
@@ -100,9 +101,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 10,
     paddingBottom: 10,
-    color: "white",
-    backgroundColor: "#D3D3D3",
-    fontSize: 15,
+    color: "black",
+    backgroundColor: "gray",
+    fontSize: 18,
     fontWeight: "bold",
   },
 });

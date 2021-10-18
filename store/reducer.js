@@ -13,10 +13,28 @@ export const booksReducer = (
     case "NEW_USER":
       return {
         ...state,
-        email: action.payload,
-        fullname: action.payload,
+        email: action.payload.email,
+        username: action.payload.username,
+        password: action.payload.password,
       };
     default:
       return state;
   }
 };
+
+// export const userReducer = (
+//   state = { email: null, username: null, password: null },
+//   action
+// ) => {
+//   switch (action.type) {
+//     case "NEW_USER":
+//       return {
+//         ...state,
+//         email: action.payload.email,
+//         username: action.payload.username,
+//         password: action.payload.password,
+//       };
+//     default:
+//       return state;
+//   }
+// };

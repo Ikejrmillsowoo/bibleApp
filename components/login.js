@@ -62,37 +62,35 @@ export const Login = ({ navigation }, props) => (
         {errors.password && touched.password && (
           <Text style={{ fontSize: 15, color: "red" }}>{errors.password}</Text>
         )}
-        <Button onPress={handleSubmit} title="Log In" disabled={!isValid} />
+        {/* <Button
+          onPress={handleSubmit}
+          title="Log In"
+          disabled={!isValid}
+          style={styles.button}
+        />
         <Button
+          style={styles.button}
           onPress={() => navigation.navigate("Signup", { name: "Sign Up" })}
           title="Sign Up"
-        />
+        /> */}
+        <View style={styles.buttonGroup}>
+          <Button
+            color="green"
+            onPress={handleSubmit}
+            title="Log In"
+            disabled={!isValid}
+            style={styles.button}
+          />
+          <Button
+            style={styles.button}
+            onPress={() => navigation.navigate("Signup", { name: "Sign Up" })}
+            title="Sign Up"
+          />
+        </View>
       </View>
     )}
   </Formik>
 );
-
-// function Login() {
-//   return (
-//     <View>
-//       <Text>Anywhere in your app!</Text>
-
-//     </View>
-//   );
-
-// return (
-//   <View style={styles.title}>
-//     {/* <Formik />
-//     <TextInput style={styles.textInputs} placeholder="Enter Name" />
-//     <TextInput style={styles.textInputs} placeholder="Enter Email" />
-//     {/* <Button title="Log In" color="white" /> */}
-//     <TouchableWithoutFeedback
-//     //onPress={() => navigation.navigate("Login", { name: "login" })}
-//     >
-//       <Text style={styles.button}>Log In</Text>
-//     </TouchableWithoutFeedback> */}
-//   </View>
-// );
 
 const styles = StyleSheet.create({
   main: {
@@ -106,15 +104,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
   },
+  buttonGroup: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "60%",
+    marginTop: 20,
+  },
   button: {
-    borderWidth: 1,
-    marginTop: 10,
-    width: 100,
     textAlign: "center",
-    paddingTop: 10,
+    padding: 10,
     paddingBottom: 10,
     color: "white",
-    backgroundColor: "#00CBEF",
   },
   title: {
     flex: 1,

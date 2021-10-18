@@ -22,7 +22,7 @@ const loginValidationSchema = yup.object().shape({
     .required("Password is required"),
 });
 
-export const Signup = (props) => (
+export const Signup = ({ navigation }, props) => (
   <Formik
     validationSchema={loginValidationSchema}
     initialValues={{ username: "", email: "", password: "" }}
@@ -74,33 +74,18 @@ export const Signup = (props) => (
         {errors.password && touched.password && (
           <Text style={{ fontSize: 15, color: "red" }}>{errors.password}</Text>
         )}
-        <Button onPress={handleSubmit} title="Sign Up" disabled={!isValid} />
+        <View style={styles.buttonGroup}>
+          <Button onPress={handleSubmit} title="Sign Up" disabled={!isValid} />
+          <Button
+            style={styles.button}
+            onPress={() => navigation.navigate("Login", { name: "Login" })}
+            title="Log In"
+          />
+        </View>
       </View>
     )}
   </Formik>
 );
-
-// function Login() {
-//   return (
-//     <View>
-//       <Text>Anywhere in your app!</Text>
-
-//     </View>
-//   );
-
-// return (
-//   <View style={styles.title}>
-//     {/* <Formik />
-//     <TextInput style={styles.textInputs} placeholder="Enter Name" />
-//     <TextInput style={styles.textInputs} placeholder="Enter Email" />
-//     {/* <Button title="Log In" color="white" /> */}
-//     <TouchableWithoutFeedback
-//     //onPress={() => navigation.navigate("Login", { name: "login" })}
-//     >
-//       <Text style={styles.button}>Log In</Text>
-//     </TouchableWithoutFeedback> */}
-//   </View>
-// );
 
 const styles = StyleSheet.create({
   main: {
@@ -113,6 +98,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#eaeaea",
     borderWidth: 1,
     borderRadius: 8,
+  },
+  buttonGroup: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "60%",
+    marginTop: 20,
   },
   button: {
     borderWidth: 1,

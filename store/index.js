@@ -1,10 +1,34 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import initialData from "./initialData";
-import { booksReducer, chapterReducer, verseReducer } from "./reducer";
+import { userReducer, booksReducer } from "./reducer";
 import ReduxThunk from "redux-thunk";
 
-export default createStore(
+// const reducers = combineReducers({
+//   booksReducer,
+//   userReducer,
+// });
+
+// const schema = {
+//   verseSchema,
+//   userSchema,
+// };
+
+export const store = createStore(
   (state, action) => booksReducer(state, action),
   initialData
-  //applyMiddleware(ReduxThunk)
 );
+console.log(`this here: ${store.getState()}`);
+
+// const newStore = createStore(
+//   (state, action) => booksReducer(state, action),
+//   verseSchema,
+//   (state, action) => userReducer(state, action),
+//   userSchema
+// );
+
+// const userStore = createStore(
+//   (state, action) => userReducer(state, action),
+//   userSchema
+// );
+
+export default store;
